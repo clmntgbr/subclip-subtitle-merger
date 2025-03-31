@@ -1,10 +1,10 @@
-# subclip-sound-extractor
+# subclip-subtitle-merger
 
 ## Description
 
-`subclip-sound-extractor` is a microservice designed to extract the audio from a video. It supports various video formats and generates a separate audio file as output, making it easier to process and analyze audio tracks independently of the video.
+`subclip-subtitle-merger` is a microservice designed to merge multiple subtitle files (in SRT format) into a single subtitle file. It combines subtitle files, ensuring that the timing and text content are preserved and seamlessly integrated into one file.
 
 ## Features
 
-- **Audio extraction**: Extracts audio from a video in various formats (MP4, AVI, MKV, etc.).
-- **Multiple audio format support**: Generates audio files in WAV format, split into manageable parts.
+- **Subtitle merging**: Combines multiple SRT subtitle files into one unified subtitle file.
+- **Timing preservation**: Ensures that subtitle timings are correctly preserved during the merging process.

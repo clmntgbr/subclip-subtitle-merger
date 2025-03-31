@@ -1,11 +1,12 @@
 import json
-from src.Protobuf.Message_pb2 import Clip, Video
+from src.Protobuf.Message_pb2 import Clip, Video, Configuration
 
 
 class ProtobufConverter:
     @staticmethod
     def json_to_protobuf(message: str) -> Clip:
         data = json.loads(message)
+        print(data)
 
         clip_data = data["clip"]
 
@@ -15,7 +16,7 @@ class ProtobufConverter:
 
         if "cover" in clip_data:
             clip.cover = clip_data["cover"]
-        
+
         video = Video()
         video.id = clip_data["originalVideo"]["id"]
         video.name = clip_data["originalVideo"]["name"]
@@ -40,6 +41,23 @@ class ProtobufConverter:
 
         video.IsInitialized()
         clip.originalVideo.CopyFrom(video)
+
+        configuration = Configuration()
+        configuration.subtitleFont = clip_data["configuration"]["subtitleFont"]
+        configuration.subtitleSize = int(clip_data["configuration"]["subtitleSize"])
+        configuration.subtitleColor = clip_data["configuration"]["subtitleColor"]
+        configuration.subtitleBold = clip_data["configuration"]["subtitleBold"]
+        configuration.subtitleItalic = clip_data["configuration"]["subtitleItalic"]
+        configuration.subtitleUnderline = clip_data["configuration"]["subtitleUnderline"]
+        configuration.subtitleOutlineColor = clip_data["configuration"]["subtitleOutlineColor"]
+        configuration.subtitleOutlineThickness = int(clip_data["configuration"]["subtitleOutlineThickness"])
+        configuration.subtitleShadow = int(clip_data["configuration"]["subtitleShadow"])
+        configuration.subtitleShadowColor = clip_data["configuration"]["subtitleShadowColor"]
+        configuration.format = clip_data["configuration"]["format"]
+        configuration.split = int(clip_data["configuration"]["split"])
+
+        configuration.IsInitialized()
+        clip.configuration.CopyFrom(configuration)
 
         clip.IsInitialized()
 
